@@ -1,129 +1,82 @@
 //#include <iostream>
+//#include <string>
 //using namespace std;
 //
-//class Deque {
+//class Stack {
 //private:
-//    int* arr;
-//    int front;
-//    int rear;
-//    int capacity;
-//    int size;
+//    char arr[100];
+//    int top;
 //
 //public:
-//    Deque(int cap) {
-//        capacity = cap;
-//        arr = new int[capacity];
-//        front = -1;
-//        rear = 0;
-//        size = 0;
+//    Stack() {
+//        top = -1;
 //    }
 //
-//    bool isFull() {
-//        return (size == capacity);
+//    void push(char ch) {
+//        if (top < 99)
+//            arr[++top] = ch;
+//        else
+//            cout << "Stack Overflow! "<<endl;
+//    }
+//
+//    char pop() {
+//        if (top == -1) {
+//            cout << "Stack Underflow! "<<endl;
+//            return '\0';
+//        }
+//        return arr[top--];
 //    }
 //
 //    bool isEmpty() {
-//        return (size == 0);
-//    }
-//
-//    void push(int x) {
-//        if (isFull()) {
-//            cout << "Deque is full. Cannot push " << x << endl;
-//            return;
-//        }
-//        if (front == -1) {
-//            front = 0;
-//            rear = 0;
-//        }
-//        else {
-//            front = (front - 1 + capacity) % capacity;
-//        }
-//        arr[front] = x;
-//        size++;
-//        cout << x << " pushed at front " << endl;
-//    }
-//
-//    int pop() {
-//        if (isEmpty()) {
-//            cout << "Deque is empty. Cannot pop " << endl;
-//            return -1;
-//        }
-//        int value = arr[front];
-//        front = (front + 1) % capacity;
-//        size--;
-//        if (size == 0) { 
-//            front = -1;
-//            rear = 0;
-//        }
-//        cout << value << " popped from front " << endl;
-//        return value;
-//    }
-//
-//    void inject(int x) {
-//        if (isFull()) {
-//            cout << "Deque is full. Cannot inject " << x << endl;
-//            return;
-//        }
-//        if (front == -1) {
-//            front = 0;
-//            rear = 0;
-//        }
-//        else {
-//            rear = (rear + 1) % capacity;
-//        }
-//        arr[rear] = x;
-//        size++;
-//        cout << x << " injected at rear " << endl;
-//    }
-//
-//    int eject() {
-//        if (isEmpty()) {
-//            cout << "Deque is empty. Cannot eject " << endl;
-//            return -1;
-//        }
-//        int value = arr[rear];
-//        rear = (rear - 1 + capacity) % capacity;
-//        size--;
-//        if (size == 0) { 
-//            front = -1;
-//            rear = 0;
-//        }
-//        cout << value << " ejected from rear " << endl;
-//        return value;
-//    }
-//
-//    void printDeque() {
-//        if (isEmpty()) {
-//            cout << "Deque is empty " << endl;
-//            return;
-//        }
-//        cout << "Deque elements: ";
-//        int index = front;
-//        for (int i = 0; i < size; i++) {
-//            cout << arr[index] << " ";
-//            index = (index + 1) % capacity;
-//        }
-//        cout << endl;
+//        return (top == -1);
 //    }
 //};
-// 
+//
+//// to check if opening and closing brackets match
+//bool isMatching(char open, char close) {
+//    if (open == '(' && close == ')') return true;
+//    if (open == '{' && close == '}') return true;
+//    if (open == '[' && close == ']') return true;
+//    return false;
+//}
+//
+//// to check if parentheses are balanced
+//bool isBalanced(string exp) {
+//    Stack s;
+//    for (int i = 0; i < exp.length(); i++) {
+//        char ch = exp[i];
+//
+//        if (ch == '(' || ch == '{' || ch == '[') {
+//            s.push(ch);
+//        }
+//        else if (ch == ')' || ch == '}' || ch == ']') {
+//            if (s.isEmpty()) {
+//                return false;
+//            }
+//
+//            char topChar = s.pop();
+//            if (!isMatching(topChar, ch)) {
+//                return false;
+//            }
+//        }
+//    }
+//
+//    return s.isEmpty();
+//}
+//
 //int main() {
-//    Deque dq(5);
+//    string exp1 = "{[a + b] * (c + d)}";
+//    string exp2 = "(a + b)) * ((c + d)";
 //
-//    dq.push(10);
-//    dq.inject(20);
-//    dq.inject(30);
-//    dq.printDeque();
+//    if (isBalanced(exp1))
+//        cout << exp1 << " is Balanced "<<endl;
+//    else
+//        cout << exp1 << " is Not Balanced "<<endl;
 //
-//    dq.pop();
-//    dq.printDeque();
-//
-//    dq.push(40);
-//    dq.inject(50);
-//    dq.printDeque();
-//
-//    dq.eject();
-//    dq.printDeque();
+//    if (isBalanced(exp2))
+//        cout << exp2 << " is Balanced "<<endl;
+//    else
+//        cout << exp2 << " is Not Balanced "<<endl;
 //
 //    return 0;
 //}

@@ -1,85 +1,88 @@
-//#include<iostream>
+//#include <iostream>
 //using namespace std;
 //
-//class circularqueue {
+//template <typename T>
+//class Stack {
 //private:
-//    int* arr;
-//    int front;
-//    int rear;
-//    int capacity;
-//    int currentsize;
+//    T* arr;       // array to hold stack elements
+//    int top;      
+//    int maxSize;  
 //
 //public:
-//    circularqueue(int size) {
-//        capacity = size;
-//        arr = new int[capacity];
-//        front = 0;
-//        rear = -1;
-//        currentsize = 0;
+//    Stack() {
+//        maxSize = 10;
+//        arr = new T[maxSize];
+//        top = -1;
 //    }
 //
-//    bool isfull() {
-//        return (currentsize == capacity);
+//    Stack(int size) {
+//        maxSize = size;
+//        arr = new T[maxSize];
+//        top = -1;
 //    }
 //
-//    bool isempty() {
-//        return (currentsize == 0);
-//    }
-//
-//    void enqueue(int value) {
-//        if (isfull()) {
-//            cout << "Queue is full. Cannot enqueue " << value << endl;
-//            return;
+//    // Push function
+//    bool Push(T val) {
+//        if (IsFull()) {
+//            cout << "Stack Overflow! Cannot push " << val << endl;
+//            return false;
 //        }
-//        rear = (rear + 1) % capacity; 
-//        arr[rear] = value;
-//        currentsize++;
-//        cout << value << " enqueued." << endl;
+//        arr[++top] = val;
+//        return true;
 //    }
 //
-//    void dequeue() {
-//        if (isempty()) {
-//            cout << "Queue is empty. Cannot dequeue" << endl;
-//            return;
+//    // Pop function
+//    bool Pop(T& val) {
+//        if (IsEmpty()) {
+//            cout << "Stack Underflow! Cannot pop." << endl;
+//            return false;
 //        }
-//        cout << arr[front] << " dequeued" << endl;
-//        front = (front + 1) % capacity; 
-//        currentsize--;
+//        val = arr[top--];
+//        return true;
 //    }
 //
-//    void printQueue() {
-//        if (isempty()) {
-//            cout << "Queue is empty" << endl;
-//            return;
+//    // Top function
+//    bool Top(T& val) {
+//        if (IsEmpty()) {
+//            cout << "Stack is empty! No top element." << endl;
+//            return false;
 //        }
-//        cout << "Queue elements: ";
-//        int index = front;
-//        for (int i = 0; i < currentsize; i++) {
-//            cout << arr[index] << " ";
-//            index = (index + 1) % capacity;
-//        }
-//        cout << endl;
+//        val = arr[top];
+//        return true;
+//    }
+//
+//    // IsEmpty function
+//    bool IsEmpty() {
+//        return (top == -1);
+//    }
+//
+//    // IsFull function
+//    bool IsFull() {
+//        return (top == maxSize - 1);
+//    }
+//
+//    // Destructor
+//    ~Stack() {
+//        delete[] arr;
 //    }
 //};
 //
 //int main() {
-//    circularqueue q(5); 
+//    Stack<int> s(5);  // stack of size 5
 //
-//    q.enqueue(10);
-//    q.enqueue(20);
-//    q.enqueue(30);
-//    q.printQueue();
+//    s.Push(10);
+//    s.Push(20);
+//    s.Push(30);
 //
-//    q.dequeue();
-//    q.printQueue();
+//    int x;
+//    if (s.Top(x))
+//        cout << "Top element: " << x << endl;
 //
-//    q.enqueue(40);
-//    q.enqueue(50);
-//    q.enqueue(60);
-//    q.printQueue();
+//    while (!s.IsEmpty()) {
+//        if (s.Pop(x))
+//            cout << "Popped: " << x << endl;
+//    }
 //
-//    q.dequeue();
-//    q.printQueue();
-//
+//    s.Pop(x); 
 //    return 0;
 //}
